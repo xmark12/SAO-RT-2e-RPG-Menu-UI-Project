@@ -55,6 +55,12 @@ public class ParameterSystem : MonoBehaviour
     [SerializeField] TMP_Text modResultCHA;
     [SerializeField] TMP_Text baseCHA;
 
+    // INT
+    [SerializeField] TMP_InputField inputINT;
+
+    // Player CHA
+    [SerializeField] TMP_InputField inputPCHA;
+
     // LVL, Stat Points, and Max EXP
     [SerializeField] TMP_InputField inputLVL;
     [SerializeField] TMP_Text resultStatPoints;
@@ -74,6 +80,8 @@ public class ParameterSystem : MonoBehaviour
     private int paramVIT = 0;
     private int paramPER = 0;
     private int paramCHA = 0;
+    private int paramINT = 1;
+    private int paramPCHA = 1;
 
     private int baseParamSTR = 0;
     private int baseParamAGI = 0;
@@ -200,7 +208,7 @@ public class ParameterSystem : MonoBehaviour
         // ---------------------------------------------------
         string STR = inputSTR.text;
 
-        if (string.IsNullOrWhiteSpace(STR))
+        if (string.IsNullOrWhiteSpace(STR) || STR == "-")
         {
             paramSTR = 0;
             int modSTR = (int)Mathf.Round((float)baseParamSTR / 5);
@@ -268,7 +276,7 @@ public class ParameterSystem : MonoBehaviour
         // ---------------------------------------------------
         string AGI = inputAGI.text;
 
-        if (string.IsNullOrWhiteSpace(AGI))
+        if (string.IsNullOrWhiteSpace(AGI) || AGI == "-")
         {
             paramAGI = 0;
             int modAGI = (int)Mathf.Round((float)baseParamAGI / 5);
@@ -351,7 +359,7 @@ public class ParameterSystem : MonoBehaviour
         // ---------------------------------------------------
         string DEX = inputDEX.text;
 
-        if (string.IsNullOrWhiteSpace(DEX))
+        if (string.IsNullOrWhiteSpace(DEX) || DEX == "-")
         {
             paramDEX = 0;
             int modDEX = (int)Mathf.Round((float)baseParamDEX / 5);
@@ -389,7 +397,7 @@ public class ParameterSystem : MonoBehaviour
         // ---------------------------------------------------
         string VIT = inputVIT.text;
 
-        if (string.IsNullOrWhiteSpace(VIT))
+        if (string.IsNullOrWhiteSpace(VIT) || VIT == "-")
         {
             paramVIT = 0;
             int modVIT = (int)Mathf.Round((float)baseParamVIT / 5);
@@ -437,7 +445,7 @@ public class ParameterSystem : MonoBehaviour
         // ---------------------------------------------------
         string PER = inputPER.text;
 
-        if (string.IsNullOrWhiteSpace(PER))
+        if (string.IsNullOrWhiteSpace(PER) || PER == "-")
         {
             paramPER = 0;
             int modPER = (int)Mathf.Round((float)baseParamPER / 5);
@@ -476,7 +484,7 @@ public class ParameterSystem : MonoBehaviour
         // ---------------------------------------------------
         string CHA = inputCHA.text;
 
-        if (string.IsNullOrWhiteSpace(CHA))
+        if (string.IsNullOrWhiteSpace(CHA) || CHA == "-")
         {
             paramCHA = 0;
             int modCHA = (int)Mathf.Round((float)baseParamCHA / 5);
@@ -507,6 +515,62 @@ public class ParameterSystem : MonoBehaviour
             else
             {
                 modResultCHA.text = "Mod: +" + modCHA;
+            }
+        }
+
+        // INT
+        // ---------------------------------------------------
+        string INT = inputINT.text;
+
+        if (string.IsNullOrWhiteSpace(INT) || INT == "-")
+        {
+            paramINT = 1;
+        }
+        else
+        {
+            paramINT = int.Parse(INT);
+
+            if (paramINT < 1)
+            {
+                paramINT = 1;
+                inputINT.text = "1";
+            }
+            else if (paramINT > 5)
+            {
+                paramINT = 5;
+                inputINT.text = "5";
+            }
+            else
+            {
+                inputINT.text = paramINT.ToString("N0");
+            }
+        }
+
+        // Player CHA
+        // ---------------------------------------------------
+        string PCHA = inputPCHA.text;
+
+        if (string.IsNullOrWhiteSpace(PCHA) || PCHA == "-")
+        {
+            paramPCHA = 1;
+        }
+        else
+        {
+            paramPCHA = int.Parse(PCHA);
+
+            if (paramPCHA < 1)
+            {
+                paramPCHA = 1;
+                inputPCHA.text = "1";
+            }
+            else if (paramPCHA > 5)
+            {
+                paramPCHA = 5;
+                inputPCHA.text = "5";
+            }
+            else
+            {
+                inputPCHA.text = paramPCHA.ToString("N0");
             }
         }
     }

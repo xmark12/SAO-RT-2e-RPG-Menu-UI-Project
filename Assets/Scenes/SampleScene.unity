@@ -17383,6 +17383,8 @@ MonoBehaviour:
   inputCHA: {fileID: 1704435204}
   modResultCHA: {fileID: 1804976176}
   baseCHA: {fileID: 210325980}
+  inputINT: {fileID: 1115530620}
+  inputPCHA: {fileID: 1186419706}
   inputLVL: {fileID: 2052730252}
   resultStatPoints: {fileID: 1828652421}
   resultMaxEXP: {fileID: 545886998}
